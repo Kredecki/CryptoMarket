@@ -1,52 +1,37 @@
-# Prerequisites
-*.d
+# Ignore Visual Studio files
+.vs/
+*.sln
+*.suo
+*.user
+*.userprefs
+*.psess
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+# Ignore NuGet packages
+*/packages/
+*.nupkg
 
-# Linker output
-*.ilk
-*.map
-*.exp
+# Ignore build output
+[Dd]ebug/
+[Rr]elease/
+x64/
+build/
+bin/
+obj/
+node_modules/
 
-# Precompiled Headers
-*.gch
-*.pch
+# Ignore TypeScript output
+*.js
+*.js.map
+*.d.ts
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+# Ignore test results
+TestResults/
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+# Ignore Vue build output
+/dist/
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+# Ignore JetBrains IDE files
+.idea/
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+# Ignore Mac files
+.DS_Store
