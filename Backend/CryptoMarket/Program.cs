@@ -16,6 +16,13 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<CMDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddIdentity<User, IdentityRole<Guid>>()
+    .AddEntityFrameworkStores<CMDbContext>()
+    .AddUserManager<UserManager<User>>()
+    .AddRoleManager<RoleManager<IdentityRole<Guid>>>();
+
+builder.Services.AddAuthentication();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
@@ -35,6 +42,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseAuthentication();
 
 app.UseCors("AllowSpecificOrigin");
 
