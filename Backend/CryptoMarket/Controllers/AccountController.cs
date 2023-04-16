@@ -38,5 +38,13 @@ namespace CryptoMarket.Controllers
             }
             return BadRequest(new { message = "Invalid username or password" });
         }
+
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return Ok(new { message = "Logout successful" });
+        }
     }
 }
