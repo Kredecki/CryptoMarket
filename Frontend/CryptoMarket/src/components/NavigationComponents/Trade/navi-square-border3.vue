@@ -9,9 +9,9 @@
             <li>
                 <div id="navi-box20" class="navi-box" :style="{'background-color': '#393A3F', 'height': height + 'px'}">
                 <div id="navi-square20" class="navi-square" style="background-color: #393A3F;">
-                    <img class="coin" src="../../public/btc.svg">
+                    <img class="coin" src="../../../../public/btc.svg">
                     <div>
-                    <p>BTC/USDT <img class="hot" src="../../public/hot.svg"> </p>
+                    <p>BTC/USDT <img class="hot" src="../../../../public/hot.svg"> </p>
                     <a>Bitcoin</a>
                     </div>
                 </div>
