@@ -1,4 +1,5 @@
-﻿using CryptoMarket.Models;
+﻿using CryptoMarket.BindingModels;
+using CryptoMarket.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,9 +18,25 @@ namespace CryptoMarket.Controllers
             signInManager = _signInManager;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult Login()
         {
             return View();
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<IActionResult> Login([FromForm]UserLogin model)
+        {
+            User user;
+            Microsoft.AspNetCore.Identity.SignInResult result;
+
+            if (ModelState.IsValid && (user = await userManager.FindByEmailAsync(model.Username)) != null
+                && (await signInManager.PasswordSignInAsync(user, model.Password, false, false)).Succeeded)
+            {
+                return Ok(new { message = "Login successful" });
+            }
+            return BadRequest(new { message = "Invalid username or password" });
         }
     }
 }
