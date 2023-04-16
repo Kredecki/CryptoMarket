@@ -1,30 +1,27 @@
 <template>
-  <Navigation></Navigation>
+  <div>
+    <navigation @view="(i) => currentView = i" />
+      <component :is="currentView" />
+  </div>
 
-  <button label="Submit" icon="pi pi-check" icon-pos="right" @click="test" >test</button>
-  <div>{{ result }}</div>
 </template>
 
 <script lang="ts">
   import { defineComponent, defineAsyncComponent, ref  } from 'vue';
-  import axios from 'axios';
+  import { NavigationItem } from '../types/enums/NavigationEnum'
+  import Login from '../components/Login.vue'
 
   const Navigation = defineAsyncComponent(() => import('./Navigation.vue'))
 
   export default defineComponent({
     components: {
-      Navigation
+      Navigation,
+      Login
     },
     setup(){
-
-      const result = ref();
-      async function test() {
-        result.value = await axios.get('https://localhost:7139/WeatherForecast')
-      }
-
+      const currentView = ref<NavigationItem>();
       return{
-        test,
-        result
+        currentView,
       };
     },
   });

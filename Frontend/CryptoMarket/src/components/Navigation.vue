@@ -13,17 +13,15 @@
       <RouterLink to="/login">
 
       </RouterLink>
-      <button class="LogInBtn" @click="logIn">Log In</button>
+      <button class="LogInBtn" @click="sendView(NavigationItem.login)">Log In</button>
       <button class="SignInBtn">Sign Up</button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent, defineAsyncComponent } from 'vue';
-  import { RouterNameEnum, RouterUrlEnum } from '../types/enums';
-  import Login from './Login.vue';
-  import router from '../router';
+  import { defineComponent, defineAsyncComponent, ref } from 'vue';
+  import { NavigationItem } from '../types/enums/NavigationEnum'
 
   //Symulacja danych z BE
   let arr: string[] = ['', 'Markets', 'Trade', 'BuyCrypto']
@@ -39,17 +37,20 @@
     components: {
       components
     },
-    setup(){
+    setup(props, { emit }){
 
-      function logIn(){
-        router.push({path: RouterNameEnum.Login})
+      const viewName = 'view'
+
+      function sendView(value: NavigationItem){
+        emit(viewName, value)
       }
 
       return{
         arr,
         components,
         arrLength,
-        logIn
+        NavigationItem,
+        sendView
       };
     },
   });

@@ -9,6 +9,8 @@
 
             <input type="submit" value="Login" class="btn btn-primary">
         </form>
+
+        <button v-if="loggedIn" @click="logout" class="btn btn-primary">Sign out</button>
     </div>
 </template>
 
@@ -21,6 +23,7 @@
 
         const Username = ref();
         const Password = ref();
+        const loggedIn = ref(false);
 
         const submitForm = () => {
           console.log(Username.value)
@@ -37,16 +40,27 @@
             })
             .then((response) => {
                 console.log(response.data);
+                loggedIn.value = true; 
             })
             .catch((error) => {
                 console.log(error);
             });
         };
 
+        const logout = () => {
+          axios.post('https://localhost:7139/Logout')
+          .then((response) => {
+            console.log(response.data)
+          })
+          loggedIn.value = false;
+        };
+
       return{
         Username,
         Password,
-        submitForm
+        submitForm,
+        loggedIn,
+        logout,
       };
     },
   });
