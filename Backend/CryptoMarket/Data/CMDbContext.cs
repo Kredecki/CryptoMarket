@@ -1,14 +1,20 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CryptoMarket.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace CryptoMarket.Data
 {
-    public class CMDbContext :DbContext
+    public class CMDbContext : IdentityDbContext<Users, IdentityRole<Guid>, Guid>
     {
-        public CMDbContext(DbContextOptions<CMDbContext> options) : base(options)
+        readonly DbContextOptions<CMDbContext> options;
+        public CMDbContext(DbContextOptions<CMDbContext> _options) : base(_options)
         {
-            
+            this.options = _options;
         }
+
+        public virtual DbSet<Currency> Currencies { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
