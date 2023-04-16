@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CryptoMarket.Data
 {
-    public class CMDbContext : IdentityDbContext<Users, IdentityRole<Guid>, Guid>
+    public class CMDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
     {
         readonly DbContextOptions<CMDbContext> options;
         public CMDbContext(DbContextOptions<CMDbContext> _options) : base(_options)
