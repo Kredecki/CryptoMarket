@@ -1,0 +1,32 @@
+<template>
+  <div>
+    <navigation @view="(i) => currentView = i" />
+      <component :is="currentView" />
+  </div>
+
+</template>
+
+<script lang="ts">
+  import { defineComponent, defineAsyncComponent, ref  } from 'vue';
+  import { NavigationItem } from '../types/enums/NavigationEnum'
+  import Login from '../components/Login.vue'
+
+  const Navigation = defineAsyncComponent(() => import('./Navigation.vue'))
+
+  export default defineComponent({
+    components: {
+      Navigation,
+      Login
+    },
+    setup(){
+      const currentView = ref<NavigationItem>();
+      return{
+        currentView,
+      };
+    },
+  });
+</script>
+
+<style>
+@import '../styles/style.scss';
+</style>
