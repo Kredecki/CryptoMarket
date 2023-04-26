@@ -1,4 +1,5 @@
-﻿using CryptoMarket.BindingModels;
+﻿using AutoMapper;
+using CryptoMarket.BindingModels;
 using CryptoMarket.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,12 +11,14 @@ namespace CryptoMarket.Controllers
         private UserManager<User> userManager;
         private RoleManager<IdentityRole<Guid>> roleManager;
         private SignInManager<User> signInManager;
+        private readonly IMapper mapper;
 
-        public AccountController(UserManager<User> _userManager, RoleManager<IdentityRole<Guid>> _roleManager, SignInManager<User> _signInManager)
+        public AccountController(UserManager<User> _userManager, RoleManager<IdentityRole<Guid>> _roleManager, SignInManager<User> _signInManager, IMapper _mapper)
         {
             userManager = _userManager;
             roleManager = _roleManager;
             signInManager = _signInManager;
+            mapper = _mapper;
         }
 
         [HttpGet]

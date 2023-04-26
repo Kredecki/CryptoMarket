@@ -3,7 +3,7 @@ using CryptoMarket.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +20,8 @@ builder.Services.AddIdentity<User, IdentityRole<Guid>>()
     .AddEntityFrameworkStores<CMDbContext>()
     .AddUserManager<UserManager<User>>()
     .AddRoleManager<RoleManager<IdentityRole<Guid>>>();
+
+builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddAuthentication();
 
