@@ -5,7 +5,7 @@
             <input v-model="Username" id="username"  class="form-control" />
 
             <label for="Password" class="control-label">Password</label>
-            <input v-model="Password" id="username" class="form-control" />
+            <input v-model="Password" id="password" class="form-control" />
 
             <input type="submit" value="Login" class="btn btn-primary">
         </form>
@@ -20,14 +20,11 @@
 
   export default defineComponent({
     setup(){
-
         const Username = ref();
         const Password = ref();
         const loggedIn = ref(false);
 
         const submitForm = () => {
-          console.log(Username.value)
-          console.log(Password.value)
         axios
             .post('https://localhost:7139/Login', {
                 Username: Username.value,
