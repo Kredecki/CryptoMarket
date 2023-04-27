@@ -1,4 +1,5 @@
 export enum NavigationItem {
-    login = 'Login'
+    login = 'Login',
+    register = 'Register'
   }
   

@@ -25,6 +25,8 @@ builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddAuthentication();
 
+builder.Services.AddMvc();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",

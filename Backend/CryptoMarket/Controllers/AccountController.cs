@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CryptoMarket.BindingModels;
+using CryptoMarket.Migrations;
 using CryptoMarket.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -49,5 +50,28 @@ namespace CryptoMarket.Controllers
             await signInManager.SignOutAsync();
             return Ok(new { message = "Logout successful" });
         }
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<IActionResult> Register([FromForm]UserRegistration userModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new User { UserName = userModel.Email, Email = userModel.Email };
+                var result = await userManager.CreateAsync(user, userModel.Password);
+                if (result.Succeeded)
+                {
+                    return Ok(new { message = "Registration successful" });
+                }
+            }
+            return BadRequest();
+        }
+
     }
 }

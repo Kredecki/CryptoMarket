@@ -10,11 +10,8 @@
       </ol>
     </div>
     <div id="navigation-right">
-      <RouterLink to="/login">
-
-      </RouterLink>
       <button class="LogInBtn" @click="sendView(NavigationItem.login)">Log In</button>
-      <button class="SignInBtn">Sign Up</button>
+      <button class="SignInBtn" @click="sendView(NavigationItem.register)">Sign Up</button>
     </div>
   </div>
 </template>
