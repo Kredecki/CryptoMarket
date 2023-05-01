@@ -34,7 +34,8 @@ builder.Services.AddCors(options =>
         {
             builder.WithOrigins("http://127.0.0.1:5173")
                 .AllowAnyHeader()
-                .AllowAnyMethod();
+                .AllowAnyMethod()
+                .AllowAnyOrigin();
         });
 });
 
