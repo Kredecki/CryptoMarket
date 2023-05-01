@@ -26,7 +26,7 @@
 
         const submitForm = () => {
         axios
-            .post('https://localhost:7139/Login', {
+            .post('api/Login', {
                 Username: Username.value,
                 Password: Password.value
             }, {
@@ -45,7 +45,7 @@
         };
 
         const logout = () => {
-          axios.post('https://localhost:7139/Logout')
+          axios.post('api/Logout')
           .then((response) => {
             console.log(response.data)
           })

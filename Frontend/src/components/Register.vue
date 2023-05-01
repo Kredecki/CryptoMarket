@@ -23,7 +23,7 @@
 
       const submitForm = () => {
         axios
-        .post('https://localhost:7139/Register', {
+        .post('api/Register', {
                 Email: Email.value,
                 Password: Password.value
             }, {
