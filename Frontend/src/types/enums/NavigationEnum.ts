@@ -1,5 +1,6 @@
 export enum NavigationItem {
     login = 'Login',
-    register = 'Register'
+    register = 'Register',
+    SpotTrading = 'SpotTrading'
   }
   

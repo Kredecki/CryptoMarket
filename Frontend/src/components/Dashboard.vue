@@ -11,6 +11,7 @@
   import { NavigationItem } from '../types/enums/NavigationEnum'
   import Login from '../components/Login.vue'
   import Register from '../components/Register.vue'
+  import SpotTrading from './SpotTrading.vue';
 
   const Navigation = defineAsyncComponent(() => import('./Navigation.vue'))
 
@@ -18,7 +19,8 @@
     components: {
       Navigation,
       Login,
-      Register
+      Register,
+      SpotTrading
     },
     setup(){
       const currentView = ref<NavigationItem>();

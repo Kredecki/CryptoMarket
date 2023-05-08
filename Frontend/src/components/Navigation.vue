@@ -6,19 +6,18 @@
     </div>
     <div id="navigation-center">
       <ol>
+
         <li><button>Buy Crypto<i class="arrow-down"></i></button></li>
 
-        
-          <li><button>Markets<i class="arrow-down"></i></button>
-            <ul>
-              <li>
-                <div id="navi-box0" class="navi-box">
-                        
-                </div>
-              </li>
-            </ul>
-          </li>
-        
+        <li><button>Markets<i class="arrow-down"></i></button>
+          <ul>
+            <li>
+              <div id="navi-box0" class="navi-box">
+                      
+              </div>
+            </li>
+          </ul>
+        </li>
 
         <li><button>Trade<i class="arrow-down"></i></button>
           <ul>
@@ -27,7 +26,7 @@
                 
                 <div id="navi-square-border1" class="navi-square-border">
                   <div id="navi-square0" class="navi-square">
-                    <div>
+                    <div @click="sendView(NavigationItem.SpotTrading)">
                         <p>Spot Trading</p>
                         <a>Buy & Sell on the Spot</a>
                     </div>
@@ -92,8 +91,8 @@
             </li>
           </ul>
         </li>
+        
       </ol>
-
     </div>
     <div id="navigation-right">
       <button class="LogInBtn" @click="sendView(NavigationItem.login)">Log In</button>
@@ -120,6 +119,7 @@
 
       function sendView(value: NavigationItem){
         emit(viewName, value)
+        console.log(value)
       }
 
       return{
