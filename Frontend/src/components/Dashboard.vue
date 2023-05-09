@@ -23,7 +23,7 @@
       SpotTrading
     },
     setup(){
-      const currentView = ref<NavigationItem>();
+      const currentView = ref<NavigationItem>(NavigationItem.dashboard);
       return{
         currentView,
       };

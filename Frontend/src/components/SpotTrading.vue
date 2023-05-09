@@ -1,7 +1,7 @@
 <template>
   <div style="background-color: #171B26;">
 
-  <Ticker style="padding-bottom: 5px;"
+  <Ticker class="STticker"
     :options="{
       symbols:[
         {
@@ -31,7 +31,7 @@
       locale: 'en'
     }"
   />
-  <Chart style="height: 60vh; padding-bottom: 10px; width: 60%;"
+  <Chart class="STchart"
     :options="{
       autosize: true,
       symbol: 'BINANCE:BTCUSDT',
@@ -43,7 +43,6 @@
       toolbar_bg: '#f1f3f6',
       enable_publishing: false,
       allow_symbol_change: true,
-      container_id: 'tradingview-chart'
     }"
   />
 
@@ -67,3 +66,7 @@
     },
   });
 </script>
+
+<style>
+@import '../styles/style.scss';
+</style>

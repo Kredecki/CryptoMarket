@@ -1,6 +1,6 @@
 <template>
   <div id="navigation">
-    <div id="navigation-left">
+    <div id="navigation-left" @click="sendView(NavigationItem.dashboard)">
       <p class="crypto">Crypto</p>
       <p class="market">Market</p>
     </div>
@@ -32,25 +32,32 @@
                     </div>
                     <ol>
                         <li>
-                        <div id="navi-box00" class="navi-box" :style="{'background-color': '#393A3F', 'height': height + 'px'}">
-                            <div id="navi-square00" class="navi-square" style="background-color: #393A3F;">
-                            <div>
-                                <a id="selected" class="header01">USDT</a>
-                                <a class="header01">USDC</a>
-                                <a class="header01">BUSD</a>
-                                <a class="header01">BTC</a>
-                                <a class="header01">DAI</a>
-                                <a class="header01">EUR</a>
-                            </div>
-                            </div>
-                            <div id="navi-square01" class="navi-square" style="background-color: #393A3F;">
-                            <img class="coin" src="@/../public/btc.svg">
-                            <div>
-                                <p>BTC/USDT <img class="hot" src="@/../public/hot.svg"> </p>
-                                <a>Bitcoin</a>
-                            </div>
-                            </div>
-                        </div>
+                          <div id="navi-box00" class="navi-box" :style="{'background-color': '#393A3F', 'height': height + 'px'}">
+                              <div id="navi-square00" class="sub-navi-square" style="background-color: #393A3F;">
+                              <div>
+                                  <a id="selected" class="header01">USDT</a>
+                                  <a class="header01">USDC</a>
+                                  <a class="header01">BUSD</a>
+                                  <a class="header01">BTC</a>
+                                  <a class="header01">DAI</a>
+                                  <a class="header01">EUR</a>
+                              </div>
+                              </div>
+                              <div id="navi-square01" class="sub-navi-square" style="background-color: #393A3F;">
+                                <img class="coin" src="@/../public/btc.svg">
+                                <div>
+                                    <p>BTC/USDT <img class="hot" src="@/../public/hot.svg"> </p>
+                                    <a>Bitcoin</a>
+                                </div>
+                              </div>
+                              <div id="navi-square01" class="sub-navi-square" style="background-color: #393A3F;">
+                                <img class="coin" src="@/../public/eth.svg">
+                                <div>
+                                    <p>ETH/USDT <img class="hot" src="@/../public/hot.svg" > </p>
+                                    <a>Ethereum</a>
+                                </div>
+                              </div>
+                          </div>
                         </li>
                     </ol>
                   </div>     
@@ -74,7 +81,7 @@
                       <ol>
                       <li>
                           <div id="navi-box20" class="navi-box" :style="{'background-color': '#393A3F', 'height': height + 'px'}">
-                          <div id="navi-square20" class="navi-square" style="background-color: #393A3F;">
+                          <div id="navi-square20" class="sub-navi-square" style="background-color: #393A3F;">
                               <img class="coin" src="@/../public/btc.svg">
                               <div>
                               <p>BTC/USDT <img class="hot" src="@/../public/hot.svg"> </p>
@@ -102,7 +109,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, defineAsyncComponent, ref } from 'vue';
+  import { defineComponent } from 'vue';
   import { NavigationItem } from '../types/enums/NavigationEnum'
 
   let height = 270
