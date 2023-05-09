@@ -96,15 +96,6 @@
     border-bottom: 5px solid #FFB11A;
 }
 
-
-
-
-
-
-
-
-
-
 #navigation-center ol {
     display: flex;
     flex-direction: row;
@@ -133,10 +124,6 @@
     list-style: none;
 }
 
-
-
-
-
 #navigation-center .navi-box > #navi-square-border1 > #navi-square0 > ol {
     display: none;
     position: absolute;
@@ -159,10 +146,6 @@
     display: flex;
 }
 
-
-
-
-
 #navigation-center .navi-box{
     display: flex;
     flex-direction: column;
@@ -170,6 +153,8 @@
     width: 300px;
 
     background-color: #28292E;
+    position: relative;
+    z-index: 1;
 }
 
 #navigation-center .navi-square-border{
@@ -207,10 +192,6 @@
     font-weight: 700;
 }
 
-#navigation-center .navi-square:hover p{
-    color: #FFB11A;
-}
-
 #navigation-center .navi-square a{
     font-family: Tahoma,Verdana,Segoe,sans-serif; 
     font-size: 10px;
@@ -230,6 +211,22 @@
     text-decoration-color: #FFB11A;
     text-decoration: underline solid 0.1rem;
     text-underline-offset: 1em;
+}
+
+#navigation-center .sub-navi-square{
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    background-color: #28292E;
+    border-radius: 5px;
+
+    height: 50px;
+
+    cursor: pointer;
+}
+
+#navigation-center .sub-navi-square:hover p{
+    color: #FFB11A;
 }
 
 @media only screen and (max-width: 1025px) {
@@ -295,7 +292,6 @@
 
 /* NAVIGATION RIGHT STOP */
 /* NAVIGATION LEFT, CENTER, RIGHT STOP */
-
 
 .hot{
     display: flex;

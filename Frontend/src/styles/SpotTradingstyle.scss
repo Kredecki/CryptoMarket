@@ -1,0 +1,247 @@
+/* Spot Trading */
+
+.STticker{    
+    padding-bottom: 5px;
+}
+
+.STcenter{
+    display: flex;
+}
+
+.STchart{
+    height: 60vh; 
+    padding-bottom: 10px; 
+    width: 60%;
+    margin: 5px;
+}
+
+.STorder-book{
+    background-color: #1E222D;
+
+    width: 20%;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.STtrading-panel{
+    font-family: Tahoma,Verdana,Segoe,sans-serif; 
+    background-color: #1E222D;
+
+    width: 20%;
+    margin: 5px;
+    border-radius: 5px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    font-size: 14px;
+}
+
+.STtrading-panel .trading-panel{
+    display: flex;
+    flex-wrap: wrap;
+
+    width: 100%;
+    padding: 15px;
+}
+
+.STtrading-panel .trading-panel .btns{
+    display: flex;
+    justify-content: space-between;
+    
+    height: 40px;
+    width: 100%;
+
+    margin: 15px;
+}
+
+.STtrading-panel .trading-panel .btns .STbuy-btn{
+    border: none;
+    border-radius: 5px;
+    
+    width: 48%;
+
+    font-weight: 700;
+    cursor: pointer;
+
+    color: white;
+    background-color: #20B26C;
+}
+
+.STtrading-panel .trading-panel .btns .STbuy-btn .STbuy-btn:hover{
+    background-color: #31A37D;
+}
+
+.STtrading-panel .trading-panel .btns .STsell-btn{
+    border: none;
+    border-radius: 5px;
+
+    width: 48%;
+
+    font-weight: 700;
+    cursor: pointer;
+
+    color: rgb(190, 190, 190);
+    background-color: #2F333E;
+}
+
+.STtrading-panel .trading-panel .STbalance{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: 100%;
+    margin: -10px 15px -15px 15px;
+
+    font-size: 12px;
+}
+
+.STtrading-panel .trading-panel .STbalance p{
+    display: flex;
+    margin: 5px;
+
+    color:rgb(190, 190, 190);
+}
+
+.STtrading-panel .trading-panel .STbalance .Balance{
+    color: white;
+}
+
+.STtrading-panel .trading-panel .orderPrice{
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    margin: 15px;
+}
+
+.STtrading-panel .trading-panel .orderPrice label{
+    display: flex;
+    margin: 0px 5px 5px 5px;
+
+    color:rgb(190, 190, 190);
+}
+
+.STtrading-panel .trading-panel .orderPrice .OrderPriceLabel{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -27px;
+    margin-right: 15px;
+    color: white;
+}
+
+.STtrading-panel .trading-panel .STorder-price-tb{
+    height: 25px;
+    width: 95%;
+
+    border: none;
+    border-radius: 5px;
+
+    color: white;
+    background-color: #2F333E;
+
+    padding: 5px 5px 5px 10px;
+}
+
+.STtrading-panel .trading-panel .qty{
+    display: flex;
+    width: 100%;
+    margin: 15px;
+    flex-direction: column;
+}
+
+.STtrading-panel .trading-panel .qty label{
+    display: flex;
+    margin: 0px 5px 5px 5px;
+
+    color:rgb(190, 190, 190);
+}
+
+.STtrading-panel .trading-panel .qty .QtyValueLabel{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -27px;
+    margin-right: 15px;
+    color: white;
+}
+
+.STtrading-panel .trading-panel .STqty-tb{
+    display: flex;
+
+    height: 25px;
+    width: 95%;
+
+    border: none;
+    border-radius: 5px;
+    
+    color: white;
+    background-color: #2F333E;
+
+    padding: 5px 5px 5px 10px;
+}
+
+.STtrading-panel .trading-panel .orderValue{
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    margin: 15px;
+}
+
+.STtrading-panel .trading-panel .orderValue label{
+    display: flex;
+    margin: 0px 5px 5px 5px;
+
+    color:rgb(190, 190, 190);
+}
+
+.STtrading-panel .trading-panel .orderValue .OrderValueLabel{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -27px;
+    margin-right: 15px;
+    color: white;
+}
+
+.STtrading-panel .trading-panel .STorder-value-tb{
+    display: flex;
+    justify-content: flex-end;
+
+    height: 25px;
+    width: 95%;
+
+    border: none;
+    border-radius: 5px;
+
+    color: white;
+    background-color: #2F333E;
+
+    padding: 5px 5px 5px 10px;
+}
+
+.STtrading-panel .trading-panel .OrderBtnDiv{
+    display: flex;
+    width: 100%;
+    margin: 15px;
+}
+
+.STtrading-panel .trading-panel .OrderBtnDiv .OrderBtn{
+    height: 40px;
+    width: 100%;
+
+    border: none;
+    border-radius: 5px;
+    
+    margin-top: 15px;
+    cursor: pointer;
+
+    font-weight: 700;
+    color: white;
+    background-color: #20B26C;
+}
+
+.STtrading-panel .trading-panel .OrderBtnDiv .OrderBtn:hover{
+    background-color: #31A37D;
+}
