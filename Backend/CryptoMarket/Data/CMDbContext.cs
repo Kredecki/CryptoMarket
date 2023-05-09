@@ -15,6 +15,9 @@ namespace CryptoMarket.Data
         }
 
         public virtual DbSet<Currency> Currencies { get; set; }
+        public virtual DbSet<UserAsset> UserAssets { get; set; }
+        public virtual DbSet<SpotTradingPair> SpotTradingPairs { get; set; }
+        public virtual DbSet<SpotTradingOrder> SpotTradingOrders { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
