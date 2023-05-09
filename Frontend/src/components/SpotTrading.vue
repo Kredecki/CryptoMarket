@@ -54,36 +54,38 @@
 
     <div class="STtrading-panel">
       <div class="trading-panel">
-        <div class="btns">
-          <button id="BuyBtn" class="STbuy-btn" @click="changeDirection('#20B26C')">Buy</button>
-          <button id="SellBtn" class="STsell-btn" @click="changeDirection('#EF454A')">Sell</button>
-        </div>
+        <form @submit.prevent="submitOrder(OrderDirection, 'Market')" method="post">
+          <div class="btns">
+            <button id="BuyBtn" class="STbuy-btn" @click="changeDirection('#20B26C')">Buy</button>
+            <button id="SellBtn" class="STsell-btn" @click="changeDirection('#EF454A')">Sell</button>
+          </div>
 
-        <div class="STbalance">
-          <p>Available Balance</p> <p class="Balance">0.000000 USDT</p>
-        </div>
+          <div class="STbalance">
+            <p>Available Balance</p> <p class="Balance">0.000000 USDT</p>
+          </div>
 
-        <div class="orderPrice">
-          <label for="OrderPrice">Order Price</label>
-          <input type="textbox" class="STorder-price-tb"/>
-          <label class="OrderPriceLabel">BTC</label>
-        </div>
+          <div class="orderPrice">
+            <label for="OrderPrice">Order Price</label>
+            <input v-model="orderPrice" type="textbox" class="STorder-price-tb"/>
+            <label class="OrderPriceLabel">BTC</label>
+          </div>
 
-        <div class="qty">
-          <label for="QtyValue">Qty</label>
-          <input type="textbox" class="STqty-tb"/>
-          <label class="QtyValueLabel">USDT</label>
-        </div>
-            
-        <div class="orderValue">
-          <label for="OrderValue">Order Value</label>
-          <input type="textbox" class="STorder-value-tb" />
-          <label class="OrderValueLabel">USDT</label>
-        </div>
+          <div class="qty">
+            <label for="QtyValue">Qty</label>
+            <input v-model="qty" type="textbox" class="STqty-tb"/>
+            <label class="QtyValueLabel">USDT</label>
+          </div>
+              
+          <div class="orderValue">
+            <label for="OrderValue">Order Value</label>
+            <input v-model="orderValue" type="textbox" class="STorder-value-tb" />
+            <label class="OrderValueLabel">USDT</label>
+          </div>
 
-        <div class="OrderBtnDiv">
-          <button id="OrderBtn" class="OrderBtn">{{ OrderDirection }}</button>
-        </div>
+          <div class="OrderBtnDiv">
+            <button id="OrderBtn" class="OrderBtn" type="submit">{{ OrderDirection }}</button>
+          </div>
+        </form>
       </div>
     </div>
 
@@ -96,6 +98,7 @@
 <script lang="ts">
   import { defineComponent, ref } from 'vue';
   import { Chart, Ticker } from 'vue-tradingview-widgets';
+  import axios from 'axios';
 
   export default defineComponent({
     components: {
@@ -103,6 +106,10 @@
       Ticker
     },
     setup(){
+
+      const orderPrice = ref();
+      const qty = ref();
+      const orderValue = ref();
 
       let OrderDirection = ref("Buy");
 
@@ -143,9 +150,24 @@
         }
       }
 
+      function submitOrder(OrderDirection: string, orderType: string){
+        axios
+        .post('api/Login', {
+                OrderDirection: OrderDirection,
+                OrderType: orderType,
+                OrderPrice: orderPrice.value,
+                Qty: qty.value,
+                OrderValue: orderValue.value
+            });
+      }
+
       return {
+        orderPrice,
+        qty,
+        orderValue,
         changeDirection,
-        OrderDirection
+        OrderDirection,
+        submitOrder
       };
     },
   });
