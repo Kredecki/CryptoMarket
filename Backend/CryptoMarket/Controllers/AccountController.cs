@@ -2,8 +2,10 @@
 using CryptoMarket.BindingModels;
 using CryptoMarket.Migrations;
 using CryptoMarket.Models;
+using CryptoMarket.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CryptoMarket.Controllers
 {
@@ -14,12 +16,16 @@ namespace CryptoMarket.Controllers
         private SignInManager<User> signInManager;
         private readonly IMapper mapper;
 
-        public AccountController(UserManager<User> _userManager, RoleManager<IdentityRole<Guid>> _roleManager, SignInManager<User> _signInManager, IMapper _mapper)
+        private readonly IAccountService accountService;
+
+        public AccountController(UserManager<User> _userManager, RoleManager<IdentityRole<Guid>> _roleManager, SignInManager<User> _signInManager, IMapper _mapper, IAccountService _accountService)
         {
             userManager = _userManager;
             roleManager = _roleManager;
             signInManager = _signInManager;
             mapper = _mapper;
+
+            accountService = _accountService;
         }
 
         [HttpGet]
@@ -61,17 +67,25 @@ namespace CryptoMarket.Controllers
         [Route("[action]")]
         public async Task<IActionResult> Register([FromForm]UserRegistration userModel)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var user = new User { UserName = userModel.Email, Email = userModel.Email };
-                var result = await userManager.CreateAsync(user, userModel.Password);
-                if (result.Succeeded)
+                if (ModelState.IsValid)
                 {
-                    return Ok(new { message = "Registration successful" });
+                    var user = new User { UserName = userModel.Email, Email = userModel.Email };
+                    var result = await userManager.CreateAsync(user, userModel.Password);
+                    if (result.Succeeded)
+                    {
+                        var userIds = accountService.GetUserIdByEmailAsync(userModel.Email);
+                        Guid userId = await userIds.FirstOrDefaultAsync();
+                        var currencyList = await accountService.GetCurrenciesAsync();
+                        await accountService.CreateAssets(userId, currencyList);
+
+                        return Ok(new { message = "Registration successful" });
+                    }
                 }
-            }
+            }catch(Exception ex) { }
+
             return BadRequest();
         }
-
     }
 }
