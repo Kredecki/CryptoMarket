@@ -20,6 +20,8 @@ builder.Services.AddDbContext<CMDbContext>(options => options.UseSqlServer(build
 
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+builder.Services.AddScoped<ISpotTradingService, SpotTradingService>();
+builder.Services.AddScoped<ISpotTradingRepository, SpotTradingRepository>();
 
 builder.Services.AddIdentity<User, IdentityRole<Guid>>()
     .AddEntityFrameworkStores<CMDbContext>()
