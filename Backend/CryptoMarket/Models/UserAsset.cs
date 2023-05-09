@@ -9,7 +9,7 @@ namespace CryptoMarket.Models
         public Guid AssetId { get; set; }
         [Required]
         [ForeignKey("UserId")]
-        public virtual User Id { get; set; }
+        public Guid Id { get; set; }
         [Required]
         [ForeignKey("CurrencyId")]
         public virtual Currency CoinId { get; set; }
@@ -22,7 +22,7 @@ namespace CryptoMarket.Models
 
         public UserAsset()
         {
-            Id = new User();
+            Id = Guid.Empty;
             CoinId = new Currency();
         }
     }
