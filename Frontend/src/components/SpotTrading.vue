@@ -31,27 +31,70 @@
       locale: 'en'
     }"
   />
-  <Chart class="STchart"
-    :options="{
-      autosize: true,
-      symbol: 'BINANCE:BTCUSDT',
-      interval: 'D',
-      timezone: 'Etc/UTC',
-      theme: 'dark',
-      style: '1',
-      locale: 'en',
-      toolbar_bg: '#f1f3f6',
-      enable_publishing: false,
-      allow_symbol_change: true,
-    }"
-  />
+
+  <div class="STcenter">
+
+    <Chart class="STchart"
+      :options="{
+        autosize: true,
+        symbol: 'BINANCE:BTCUSDT',
+        interval: 'D',
+        timezone: 'Etc/UTC',
+        theme: 'dark',
+        style: '1',
+        locale: 'en',
+        toolbar_bg: '#f1f3f6',
+        enable_publishing: false,
+        allow_symbol_change: true,
+      }"
+    />
+
+    <div id="" class="STorder-book">
+    </div>
+
+    <div class="STtrading-panel">
+      <div class="trading-panel">
+        <div class="btns">
+          <button id="BuyBtn" class="STbuy-btn" @click="changeDirection('#20B26C')">Buy</button>
+          <button id="SellBtn" class="STsell-btn" @click="changeDirection('#EF454A')">Sell</button>
+        </div>
+
+        <div class="STbalance">
+          <p>Available Balance</p> <p class="Balance">0.000000 USDT</p>
+        </div>
+
+        <div class="orderPrice">
+          <label for="OrderPrice">Order Price</label>
+          <input type="textbox" class="STorder-price-tb"/>
+          <label class="OrderPriceLabel">BTC</label>
+        </div>
+
+        <div class="qty">
+          <label for="QtyValue">Qty</label>
+          <input type="textbox" class="STqty-tb"/>
+          <label class="QtyValueLabel">USDT</label>
+        </div>
+            
+        <div class="orderValue">
+          <label for="OrderValue">Order Value</label>
+          <input type="textbox" class="STorder-value-tb" />
+          <label class="OrderValueLabel">USDT</label>
+        </div>
+
+        <div class="OrderBtnDiv">
+          <button id="OrderBtn" class="OrderBtn">{{ OrderDirection }}</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
 
 
   </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue';
+  import { defineComponent, ref } from 'vue';
   import { Chart, Ticker } from 'vue-tradingview-widgets';
 
   export default defineComponent({
@@ -60,13 +103,54 @@
       Ticker
     },
     setup(){
+
+      let OrderDirection = ref("Buy");
+
+      function changeDirection(color: string){
+        var SellBtn = document.getElementById("SellBtn");
+        var BuyBtn = document.getElementById("BuyBtn");
+        var OrderBtn = document.getElementById("OrderBtn");
+
+        var green = "";
+        var red = "";
+        var buyText = "";
+        var sellText = "";
+
+        if(SellBtn && BuyBtn && OrderBtn) {
+
+          if(color == "#20B26C") {
+            green = "#20B26C"; 
+            red="#2F333E"; 
+            OrderDirection.value = "Buy";
+            buyText = "white";
+            sellText = "rgb(190, 190, 190)";
+          } else {
+            green = "#2F333E"; 
+            red = "#EF454A";
+            OrderDirection.value = "Sell"
+            buyText = "rgb(190, 190, 190)";
+            sellText = "white";
+          }
+
+          SellBtn.style.backgroundColor = red;
+          SellBtn.style.color = sellText;
+
+          BuyBtn.style.backgroundColor = green;
+          BuyBtn.style.color = buyText;
+
+          OrderBtn.style.background = color;
+          console.log(color)
+        }
+      }
+
       return {
-        
+        changeDirection,
+        OrderDirection
       };
     },
   });
 </script>
 
 <style>
-@import '../styles/style.scss';
+@import '../styles/SpotTradingStyle.scss';
 </style>
