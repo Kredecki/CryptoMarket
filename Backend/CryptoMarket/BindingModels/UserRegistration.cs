@@ -11,5 +11,11 @@ namespace CryptoMarket.BindingModels
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
+
+        public UserRegistration()
+        {
+            Email = "";
+            Password = "";
+        }
     }
 }

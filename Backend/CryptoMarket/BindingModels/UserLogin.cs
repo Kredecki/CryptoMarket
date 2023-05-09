@@ -8,5 +8,11 @@ namespace CryptoMarket.BindingModels
         public string Username { get; set; }
         [Required]
         public string Password { get; set; }
+
+        public UserLogin()
+        {
+            Username = "";
+            Password = "";
+        }
     }
 }
