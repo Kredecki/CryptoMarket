@@ -9,7 +9,7 @@ namespace CryptoMarket.Models
         public Guid OrderId { get; set; }
         [Required]
         [ForeignKey("UserId")]
-        public virtual User Id { get; set; }
+        public Guid UserId { get; set; }
         [Required]
         [MaxLength(10)]
         public string OrderType { get; set; }
@@ -24,7 +24,7 @@ namespace CryptoMarket.Models
         public decimal OrderQty { get; set; }
         [Required]
         [ForeignKey("SpotTradingPairId")]
-        public SpotTradingPair SpotTradingPair { get; set; }
+        public int SpotTradingPairId { get; set; }
         [Required]
         [MaxLength(5)]
         public string Direction { get; set; }
@@ -36,8 +36,7 @@ namespace CryptoMarket.Models
         {
             OrderType = "";
             Direction = "";
-            Id = new User();
-            SpotTradingPair = new SpotTradingPair();
+            UserId = Guid.NewGuid();
         }
     }
 }

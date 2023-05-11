@@ -40,8 +40,8 @@ namespace CryptoMarket.Services
             {
                 UserAsset userAsset = new UserAsset();
                 userAsset.AssetId = Guid.NewGuid();
-                userAsset.Id = user.Id;
-                userAsset.CoinId = currency;
+                userAsset.UserId = user.Id;
+                userAsset.CoinId = currency.CurrencyId;
                 userAsset.AvailableBalance = 0;
                 userAsset.CreatedTime = DateAndTime.Now;
                 userAsset.ModifyTime = DateAndTime.Now;
