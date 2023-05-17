@@ -3,6 +3,7 @@ using CryptoMarket.BindingModels;
 using CryptoMarket.Migrations;
 using CryptoMarket.Models;
 using CryptoMarket.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -86,6 +87,21 @@ namespace CryptoMarket.Controllers
             }catch(Exception ex) { }
 
             return BadRequest();
+        }
+
+        [Authorize]
+        [Route("[action]")]
+        [HttpGet]
+        public IActionResult CheckAuthentication()
+        {
+            try
+            {
+                return Ok();
+
+            }catch(Exception ex)
+            {
+                return BadRequest();
+            }
         }
     }
 }
