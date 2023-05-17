@@ -82,7 +82,7 @@
               <label class="OrderValueLabel">USDT</label>
             </div>
 
-            <div class="OrderBtnDiv">
+            <div v-if="isLoggedIn == 'true'" class="OrderBtnDiv">
               <button id="OrderBtn" class="OrderBtn" type="submit">{{ OrderDirection }}</button>
             </div>
           </form>
@@ -105,16 +105,17 @@
     setup(){
 
       const availableBalance = ref('');
+      var isLoggedIn = ref('');
 
-      onMounted(async () =>{
-        const response = await axios.get('api/GetAvailableBalance', {
-          params: {
-            currency: "USDT"
-          }
+      function checkAuthenticationStatus() {
+      axios.get('/api/CheckAuthentication')
+        .then(response => {
+          isLoggedIn.value = "true";
+        })
+        .catch(error => {
+          isLoggedIn.value = "false";
         });
-        availableBalance.value = response.data;
-        console.log("balance: " + availableBalance.value)
-      })
+      }
 
       const orderPrice = ref();
       const qty = ref();
@@ -175,6 +176,21 @@
             });
       }
 
+      
+      onMounted(async () =>{
+
+        checkAuthenticationStatus();
+
+        const response = await axios.get('api/GetAvailableBalance', {
+          params: {
+            currency: "USDT"
+          }
+        });
+        availableBalance.value = response.data;
+        console.log("balance: " + availableBalance.value)
+      })
+
+
       return {
         orderPrice,
         qty,
@@ -182,7 +198,8 @@
         changeDirection,
         OrderDirection,
         submitOrder,
-        availableBalance
+        availableBalance,
+        isLoggedIn
       };
     },
   });

@@ -101,7 +101,12 @@
         
       </ol>
     </div>
-    <div id="navigation-right">
+
+    <div id="navigation-right" v-if="isLoggedIn == 'true'">
+      <button class="SignInBtn" @click="logout">Sign out</button>
+    </div>
+
+    <div id="navigation-right" v-if="isLoggedIn == 'false'">
       <button class="LogInBtn" @click="sendView(NavigationItem.login)">Log In</button>
       <button class="SignInBtn" @click="sendView(NavigationItem.register)">Sign Up</button>
     </div>
@@ -109,8 +114,9 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue';
+  import { defineComponent, ref, onMounted } from 'vue';
   import { NavigationItem } from '../types/enums/NavigationEnum'
+  import axios from 'axios';
 
   let height = 270
 
@@ -123,17 +129,43 @@
     setup(props, { emit }){
 
       const viewName = 'view'
+      var isLoggedIn = ref('');
+
+      function checkAuthenticationStatus() {
+      axios.get('/api/CheckAuthentication')
+        .then(response => {
+          isLoggedIn.value = "true";
+        })
+        .catch(error => {
+          isLoggedIn.value = "false";
+        });
+      }
+      
+      const logout = () => {
+          axios.post('api/Logout')
+          .then((response) => {
+            isLoggedIn.value = "false";
+            window.location.reload();
+            console.log(response.data)
+          })
+        };
 
       function sendView(value: NavigationItem){
         emit(viewName, value)
         console.log(value)
       }
+      
+      onMounted(async () =>{
+        checkAuthenticationStatus();
+        })
 
       return{
         components,
         NavigationItem,
         sendView,
-        height
+        height,
+        logout,
+        isLoggedIn
       };
     },
   });
