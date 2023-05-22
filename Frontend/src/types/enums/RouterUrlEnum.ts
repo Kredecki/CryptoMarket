@@ -1,4 +1,7 @@
 export enum RouterUrlEnum {
-    Default = '/'
+    Default = '/',
+    Exchange = '/Exchange',
+    Login = '/Login',
+    Register = '/Register'
   }
   

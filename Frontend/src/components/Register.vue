@@ -1,4 +1,5 @@
 <template>
+  <Navigation />
     <div id="Registration-panel">
         <form @submit.prevent="submitForm" method="post">
             <label for="Email" class="control-label">Email</label>
@@ -13,10 +14,15 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref } from 'vue';
+  import { defineComponent, ref, defineAsyncComponent } from 'vue';
   import axios from 'axios';
 
+  const Navigation = defineAsyncComponent(() => import('./Navigation.vue'))
+  
   export default defineComponent({
+    components: {
+      Navigation
+    },
     setup(){
       const Password = ref();
       const Email = ref();

@@ -1,9 +1,8 @@
 <template>
   <div>
-    <navigation @view="(i) => currentView = i" />
-      <component :is="currentView" />
+    <navigation />
   </div>
-
+dashboard
 </template>
 
 <script lang="ts">
@@ -11,7 +10,6 @@
   import { NavigationItem } from '../types/enums/NavigationEnum'
   import Login from '../components/Login.vue'
   import Register from '../components/Register.vue'
-  import SpotTrading from './SpotTrading.vue';
 
   const Navigation = defineAsyncComponent(() => import('./Navigation.vue'))
 
@@ -20,7 +18,6 @@
       Navigation,
       Login,
       Register,
-      SpotTrading
     },
     setup(){
       const currentView = ref<NavigationItem>(NavigationItem.dashboard);

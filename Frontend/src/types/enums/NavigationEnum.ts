@@ -1,7 +1,7 @@
 export enum NavigationItem {
-    dashboard = 'Dashboard',
+    dashboard = '/',
     login = 'Login',
     register = 'Register',
-    SpotTrading = 'SpotTrading'
+    exchange = 'Exchange'
   }
   

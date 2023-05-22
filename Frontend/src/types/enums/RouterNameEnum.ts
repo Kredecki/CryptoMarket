@@ -1,4 +1,7 @@
 export enum RouterNameEnum {
-    Default = 'default'
+    Default = 'default',
+    Exchange = 'exchange',
+    Login = 'login',
+    Register = 'register'
   }
   

@@ -1,4 +1,5 @@
 <template>
+  <navigation />
     <div id="Login-panel">
         <form @submit.prevent="submitForm" method="post">
             <label for="Name" class="control-label">Username</label>
@@ -13,10 +14,15 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref } from 'vue';
+  import { defineComponent, ref, defineAsyncComponent } from 'vue';
   import axios from 'axios';
 
+  const Navigation = defineAsyncComponent(() => import('./Navigation.vue'))
+
   export default defineComponent({
+    components: {
+      Navigation
+    },
     setup(){
         const Username = ref();
         const Password = ref();
